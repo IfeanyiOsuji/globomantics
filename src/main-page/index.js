@@ -3,6 +3,9 @@ import { useEffect, useState, useMemo } from 'react'; // enables us to create si
 import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import './main-page.css';
 import FeaturedHouse from './featured-house';
+import HouseFilter from './house-filter';
+import SearchResults from './search-results';
+import HouseFromQuery from '../house/HouseFromQuery';
 
 function App() {
   const [allHouses, setAllHouses] = useState([])
@@ -24,8 +27,12 @@ function App() {
     <Router>
     <div className='container'>
       <Header subtitle='Providing houses all over the world'/>
+      <HouseFilter allhouses={allHouses}/>
       <Routes>
+      <Route path='/searchresults/:country' element={<SearchResults allHouses={allHouses} />}/>
+      <Route path='/house/:id' element={<HouseFromQuery allHouses={allHouses} />} />
       <Route path='/' element={<FeaturedHouse house={featuredHouse}/>}>
+     
         
       </Route>
       </Routes>
