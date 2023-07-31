@@ -1,10 +1,11 @@
 import Header from './header';
 import { useEffect, useState, useMemo } from 'react'; // enables us to create side effects when the state of a component changes
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router,Routes, Route } from 'react-router-dom';
 import './main-page.css';
+import FeaturedHouse from './featured-house';
 
 function App() {
-  [allHouses, setAllHouses] = useState([])
+  const [allHouses, setAllHouses] = useState([])
   useEffect(() => {
     const fetchHouses = async ()=>{
       const rsp = await fetch("/houses.json");
@@ -23,11 +24,13 @@ function App() {
     <Router>
     <div className='container'>
       <Header subtitle='Providing houses all over the world'/>
-
+      <Routes>
+      <Route path='/' element={<FeaturedHouse house={featuredHouse}/>}>
+        
+      </Route>
+      </Routes>
     </div>
-    <Switch>
-      <Route path='/'></Route>
-      </Switch>
+    
     </Router>
   
    
