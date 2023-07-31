@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 const SearchResultRow = ({house}) => {
     const navigate = useNavigate();
     const setActive = () => {
+        console.log(house)
       navigate(`/house/${house.id}`)
 
     };
